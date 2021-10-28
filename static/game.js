@@ -1,7 +1,7 @@
 var config = {
     type: Phaser.AUTO,
     width: 800,
-    height: 1200,
+    height: 400,
     physics: {
         default: 'arcade',
         arcade: {
@@ -16,9 +16,11 @@ var config = {
 
 var game = new Phaser.Game(config);
 
+var cursors;
 function preload ()
 {
     this.load.image('ship', 'ships/F5S1.png')
+    cursors = this.input.keyboard.createCursorKeys();
 }
 
 function create ()
@@ -33,11 +35,27 @@ function create ()
         blendMode: 'ADD'
     });
 
-    var logo = this.physics.add.image(137, 183, 'ship');
+    var player = this.physics.add.image(137, 183, 'ship');
 
-    logo.setVelocity(100, 200);
-    logo.setBounce(1, 1);
-    logo.setCollideWorldBounds(true);
+   // player.setVelocity(100, 200);
+    //player.setBounce(1, 1);
+    player.setCollideWorldBounds(true);
 
-    emitter.startFollow(logo);
+    emitter.startFollow(player);
+}
+
+function update () {
+    inputProcessing();
+}
+
+function inputProcessing(){
+    cursors = this.input.keyboard.createCursorKeys();
+
+    if(cursors.left.isDown){
+        console.log('left key pressed');
+        player.setVelocityX(-160);
+    }
+    else{
+        player.setVelocityX(0);
+    }
 }
