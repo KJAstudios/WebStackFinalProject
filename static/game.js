@@ -18,13 +18,7 @@ var game = new Phaser.Game(config);
 
 function preload ()
 {
-    this.load.image('ship', 'Faction5-Spaceships-by-MillionthVector\F5S1.png')
-
-    this.load.setBaseURL('http://labs.phaser.io');
-
-    this.load.image('sky', 'assets/skies/space3.png');
-    this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-    this.load.image('red', 'assets/particles/red.png');
+    this.load.image('ship', 'ships/F5S1.png')
 }
 
 function create ()
