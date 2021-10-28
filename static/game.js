@@ -10,13 +10,15 @@ var config = {
     },
     scene: {
         preload: preload,
-        create: create
+        create: create,
+        update: update
     }
 };
 
 var game = new Phaser.Game(config);
 
 var cursors;
+var player;
 function preload ()
 {
     this.load.image('ship', 'ships/F5S1.png')
@@ -35,7 +37,7 @@ function create ()
         blendMode: 'ADD'
     });
 
-    var player = this.physics.add.image(137, 183, 'ship');
+    player = this.physics.add.image(137, 183, 'ship');
 
    // player.setVelocity(100, 200);
     //player.setBounce(1, 1);
@@ -46,14 +48,16 @@ function create ()
 
 function update () {
     inputProcessing();
-}
+    }
 
 function inputProcessing(){
-    cursors = this.input.keyboard.createCursorKeys();
-
     if(cursors.left.isDown){
-        console.log('left key pressed');
+        console.log('left key')
         player.setVelocityX(-160);
+    }
+    else if(cursors.right.isDown){
+        player.setVelocityX(160);
+        console.log('right key');
     }
     else{
         player.setVelocityX(0);
