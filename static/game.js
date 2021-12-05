@@ -18,6 +18,7 @@ var config = {
 var game = new Phaser.Game(config);
 
 var cursors;
+
 var player;
 function preload ()
 {
