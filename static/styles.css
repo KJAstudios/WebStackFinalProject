@@ -1,22 +1,33 @@
 .gameCanvas{
     background-color: red;
     bottom: 5%;
-    
 }
 
 *{
     display:block;
-    margin: 5px;
+    margin: 0px;
+    background-color: white;
     /* position: absolute; */
     /* transform: translate(10px, 10px); */
     
 }
+#numberButton:hover{
+    transition: transform .1s;
+    transform: scale(1.175);
+}
 
-title{
-    color: red;
+#title{
+    display: grid;
+    text-align: center;
     font-size: 200%;
-} 
-
-body{
-
+    color: white;
+    margin-top: 0%;
+    margin-bottom: 1%;
+    border: red;
+    border-radius: 2%;
+    background-color: green;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 750;
+    box-shadow: 10px 5px 10px #888888; 
+    padding: 0.5%;
 }
