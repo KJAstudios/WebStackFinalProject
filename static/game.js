@@ -1,7 +1,14 @@
 let number = 0;
-let numberElement = null;
-let upgradeLevel = 0;
+
+// start values for new upgrades
+let nextUpgradeId = 0;
+let incomeAmount = 1;
+let startPrice = 1;
+
+//point at which new upgrade is unlocked
 let newUpgradePoint = 10;
+
+// current stats
 let currentIncome = 1;
 let currentUpgrades = [];
 
@@ -40,37 +47,49 @@ function moneyUpdate() {
     updateNumberText();
 }
 
-function updateNumberText(){
-    $("#number").text(number);
+function updateNumberText() {
+    number = roundNumberToTwoDecimals(number);
+    $("#number").text(beautifyNumber(number));
 }
 
-function updateIncomeText(){
-    $("#currentIncome").text("Current Income: " + currentIncome + "/sec");
+function updateIncomeText() {
+    $("#currentIncome").text("Current Income: " + beautifyNumber(currentIncome) + "/sec");
 }
 
-function updateUpgrades(){
-    if (currentUpgrades.length != 0){
-        for(let i = 0; i < currentUpgrades.length; i++){
+function updateUpgrades() {
+    if (currentUpgrades.length != 0) {
+        for (let i = 0; i < currentUpgrades.length; i++) {
             currentUpgrades[i].updateUpgrade();
         }
     }
 }
 
-function unlockUpgradeCheck(){
+function unlockUpgradeCheck() {
     if (number > newUpgradePoint) {
+        newUpgradePoint *= 10;
         addUpgrade();
     }
 }
 
-function addUpgrade(){
-    var upgrade = new Upgrade(upgradeLevel);
-    currentUpgrades.push(upgrade);
-    $("body").append(upgrade.getUpgradeHTML());
-    $("#" + upgradeLevel).click(function () {
-        upgrade.buyUpgrade();
-    })
-    upgradeLevel++;
-    newUpgradePoint *= 10;
+function addUpgrade() {
+    $.post('/upgrade', { upgradeId: nextUpgradeId })
+        .done(function (data) {
+            console.log(data);
+            var upgrade = new Upgrade(data[0].name, data[0].upgradeId, data[0].startingIncome, data[0].initalPrice);
+            console.log(upgrade);
+            currentUpgrades.push(upgrade);
+            $("body").append(upgrade.getUpgradeHTML());
+
+            $("#" + nextUpgradeId).click(function () {
+                upgrade.buyUpgrade();
+            })
+
+            nextUpgradeId++;
+            incomeAmount *= 10;
+            startPrice *= 10.5;
+            
+        })
+        .fail(function () { alert("could not get next upgrade from database") });
 }
 
 /*=====================================================================================
@@ -78,19 +97,20 @@ UPGRADE CLASSES AND FUNCTIONS
 =======================================================================================*/
 
 class Upgrade {
-    constructor(id) {
+    constructor(name, id, income, startPrice) {
         this.level = 0;
-        this.price = 1;
-        this.additionalIncome = 1;
+        this.price = startPrice;
+        this.additionalIncome = income;
         this.upgradeId = id;
+        this.upgradeName = name;
     }
 
-    updateUpgrade(){
-        $("#" + this.upgradeId).html("Upgrade " + this.upgradeId + "<br>+ "+ this.additionalIncome + "/sec <br> Cost: " + this.price);
+    updateUpgrade() {
+        $("#" + this.upgradeId).html(this.upgradeName + "<br>+ " + beautifyNumber(this.additionalIncome) + "/sec <br> Cost: " + beautifyNumber(this.price));
     }
 
     getUpgradeHTML() {
-        return "<button id='" + this.upgradeId + "'>Upgrade " + this.upgradeId + " <br> Cost: " + this.price + "</button>";
+        return "<button id='" + this.upgradeId + "'>"+ this.upgradeName + " <br> Cost: " + beautifyNumber(this.price) + "</button>";
     }
 
     buyUpgrade() {
@@ -99,11 +119,24 @@ class Upgrade {
         }
         this.level += 1;
         number -= this.price;
-        currentIncome += 1;
-        this.price = calcuateUpgradeCost(this.level, this.price);
+        currentIncome += this.additionalIncome;
+        this.price = this.calcuateUpgradeCost(this.level, this.price);
+    }
+
+    calcuateUpgradeCost(level, currentPrice) {
+        let newPrice = currentPrice += (currentPrice * (level * 0.01));
+        return roundNumberToTwoDecimals(newPrice);
     }
 }
 
-function calcuateUpgradeCost(level, currentPrice) {
-    return currentPrice += (currentPrice * (level * 0.01));
+/*=====================================================================================
+GLOBAL SUPPORT FUNCTIONS
+=======================================================================================*/
+function roundNumberToTwoDecimals(inNumber) {
+    let newNumber = inNumber.toFixed(2);
+    return parseFloat(newNumber);
+}
+
+function beautifyNumber(inNumber) {
+    return inNumber.toLocaleString("en-US");
 }
