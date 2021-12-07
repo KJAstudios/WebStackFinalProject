@@ -25,9 +25,32 @@
     margin-bottom: 1%;
     border: red;
     border-radius: 2%;
-    background-color: green;
+    background-color: #CABDAC;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 750;
     box-shadow: 10px 5px 10px #888888; 
     padding: 0.5%;
+}
+
+.fa:hover {
+    #24292F
+}
+.fa-github {
+    background: white ;
+    color: #24292F;
+}
+
+.social{
+    display: flex;
+    margin-left: 45%;
+}
+
+.social a{ 
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content:center;
+    align-items: center;
+    float: left;
+    list-style-type: none;
 }
