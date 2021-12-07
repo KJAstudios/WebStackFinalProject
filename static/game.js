@@ -9,6 +9,7 @@ let startPrice = 1;
 let newUpgradePoint = 10;
 
 // current stats
+let clickValue = 1;
 let currentIncome = 1;
 let currentUpgrades = [];
 
@@ -24,7 +25,7 @@ function main() {
 
 $(document).ready(function () {
     $("#numberButton").click(function () {
-        number++;
+        number += clickValue;
         $("#number").text(number);
     });
 
@@ -38,6 +39,7 @@ UPDATE FUNCTIONS
 function Update() {
     updateNumberText();
     updateIncomeText();
+    updateClickIncomeText();
     unlockUpgradeCheck();
     updateUpgrades();
 }
@@ -49,11 +51,15 @@ function moneyUpdate() {
 
 function updateNumberText() {
     number = roundNumberToTwoDecimals(number);
-    $("#number").text(beautifyNumber(number));
+    $("#number").text("$" + beautifyNumber(number));
 }
 
 function updateIncomeText() {
-    $("#currentIncome").text("Current Income: " + beautifyNumber(currentIncome) + "/sec");
+    $("#currentIncome").text("Current Income: $" + beautifyNumber(currentIncome) + "/sec");
+}
+
+function updateClickIncomeText() {
+    $("#clickIncome").text("Income Per Click: $" + beautifyNumber(clickValue) + "/click")
 }
 
 function updateUpgrades() {
@@ -78,7 +84,7 @@ function addUpgrade() {
             var upgrade = new Upgrade(data[0].name, data[0].upgradeId, data[0].startingIncome, data[0].initalPrice);
             console.log(upgrade);
             currentUpgrades.push(upgrade);
-            $("body").append(upgrade.getUpgradeHTML());
+            $("footer").prepend(upgrade.getUpgradeHTML());
 
             $("#" + nextUpgradeId).click(function () {
                 upgrade.buyUpgrade();
@@ -87,7 +93,7 @@ function addUpgrade() {
             nextUpgradeId++;
             incomeAmount *= 10;
             startPrice *= 10.5;
-            
+
         })
         .fail(function () { alert("could not get next upgrade from database") });
 }
@@ -106,11 +112,11 @@ class Upgrade {
     }
 
     updateUpgrade() {
-        $("#" + this.upgradeId).html(this.upgradeName + "<br>+ " + beautifyNumber(this.additionalIncome) + "/sec <br> Cost: " + beautifyNumber(this.price));
+        $("#" + this.upgradeId).html(this.upgradeName + "<br>+ $" + beautifyNumber(this.additionalIncome) + "/sec <br> Cost: $" + beautifyNumber(this.price));
     }
 
     getUpgradeHTML() {
-        return "<button id='" + this.upgradeId + "'>"+ this.upgradeName + " <br> Cost: " + beautifyNumber(this.price) + "</button>";
+        return "<button id='" + this.upgradeId + "'>" + this.upgradeName + " <br> Cost: " + beautifyNumber(this.price) + "</button>";
     }
 
     buyUpgrade() {
@@ -120,6 +126,7 @@ class Upgrade {
         this.level += 1;
         number -= this.price;
         currentIncome += this.additionalIncome;
+        clickValue += roundNumberToTwoDecimals(this.additionalIncome * 0.01);
         this.price = this.calcuateUpgradeCost(this.level, this.price);
     }
 
