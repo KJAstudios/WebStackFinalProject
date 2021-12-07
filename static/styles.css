@@ -20,12 +20,11 @@
     display: grid;
     text-align: center;
     font-size: 200%;
-    color: white;
+    color: yellow;
     margin-top: 0%;
     margin-bottom: 1%;
-    border: red;
     border-radius: 2%;
-    background-color: #CABDAC;
+    background-color: #1C1B1C;
     font-family: 'Courier New', Courier, monospace;
     font-weight: 750;
     box-shadow: 10px 5px 10px #888888; 
