@@ -115,7 +115,7 @@ class Upgrade {
     }
 
     updateUpgrade() {
-        $("#" + this.upgradeId).html(this.upgradeName + "<br>+ $" + beautifyNumber(this.additionalIncome) + "/sec <br> Cost: $" + beautifyNumber(this.price));
+        $("#" + this.upgradeId).html(this.upgradeName + "<br>+ $" + beautifyNumber(this.additionalIncome) + "/sec <br> Cost: $" + beautifyNumber(this.price) + "<br>" + this.level + " owned");
     }
 
     getUpgradeHTML() {
@@ -131,6 +131,13 @@ class Upgrade {
         currentIncome += this.additionalIncome;
         clickValue += roundNumberToTwoDecimals(this.additionalIncome * 0.01);
         this.price = this.calcuateUpgradeCost(this.level, this.price);
+        this.checkForAdditionalIncomeUpgrade();
+    }
+
+    checkForAdditionalIncomeUpgrade(){
+        if(this.level % 10 === 0){
+            this.additionalIncome *= 2;
+        }
     }
 
     calcuateUpgradeCost(level, currentPrice) {
