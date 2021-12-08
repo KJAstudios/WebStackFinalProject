@@ -12,6 +12,7 @@ let newUpgradePoint = 10;
 let clickValue = 1;
 let currentIncome = 1;
 let currentUpgrades = [];
+let upgradesDone = false;
 
 /*=====================================================================================
 MAIN SETUP FUNCTIONS
@@ -71,7 +72,7 @@ function updateUpgrades() {
 }
 
 function unlockUpgradeCheck() {
-    if (number > newUpgradePoint) {
+    if (number > newUpgradePoint && !upgradesDone) {
         newUpgradePoint *= 10;
         addUpgrade();
     }
@@ -80,7 +81,9 @@ function unlockUpgradeCheck() {
 function addUpgrade() {
     $.post('/upgrade', { upgradeId: nextUpgradeId })
         .done(function (data) {
-            console.log(data);
+            if(typeof data[0].name === "undefined"){
+                return;
+            }
             var upgrade = new Upgrade(data[0].name, data[0].upgradeId, data[0].startingIncome, data[0].initalPrice);
             console.log(upgrade);
             currentUpgrades.push(upgrade);
