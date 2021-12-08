@@ -52,7 +52,7 @@ function moneyUpdate() {
 
 function updateNumberText() {
     number = roundNumberToTwoDecimals(number);
-    $("#number").text("Current Balance: $" + beautifyNumber(number));
+    $("#number").text("$" +beautifyNumber(number));
 }
 
 function updateIncomeText() {
@@ -119,7 +119,7 @@ class Upgrade {
     }
 
     getUpgradeHTML() {
-        return "<button id='" + this.upgradeId + "'>" + this.upgradeName + " <br> Cost: " + beautifyNumber(this.price) + "</button>";
+        return "<button id='" + this.upgradeId + "' class='upgradeButton'>" + this.upgradeName + " <br> Cost: " + beautifyNumber(this.price) + "</button>";
     }
 
     buyUpgrade() {

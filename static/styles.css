@@ -26,7 +26,7 @@ body{
 
 #numberButton:hover{
     transition: transform .1s;
-    transform: scale(1.175);
+    transform: scale(1.05);
 }
 
 /*footer*/
@@ -118,4 +118,19 @@ footer{
 
 script{
     display: none;
+}
+
+.buttonDiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upgradeButton{
+    padding: 1%;
+    margin: 0.25%;
+}
+
+.number{
+    font-size: 40px;
 }

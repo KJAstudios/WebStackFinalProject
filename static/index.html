@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title id="title">Investment Clicker</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -11,29 +12,32 @@
 
 <body>
     <section class='clicking'>
-        <p id="currentIncome">Current Income: </p>
-        <p id="clickIncome">Income Per Click: </p>
+        <p>Current Balance:</p>
+        <p id="number" class="number"></p>
 
         <div id="box-container">
-            <button id="numberButton" onclick="bell()">  <img src="cookies.png" height ="124" width="215">Click Me</button>
+            <button id="numberButton" onclick="bell()"> <img src="cookies.png" height="124" width="215">Click
+                Me</button>
             <audio id="audioMusic">
                 <source src="cash.mp3" type="audio/mpeg">
-            </audio> 
+            </audio>
         </div>
-    <br> <br> <br> <br><br> <br> <br> <br> <br> <br>
-
-    <p id="number">Current Balance</p>
-    <div id="buttonDiv">
-    </div>
+        <br> <br> <br> <br><br> <br> <br> <br> <br> <br>
+        <p id="currentIncome">Current Income: </p>
+        <p id="clickIncome">Income Per Click: </p>
+        <div id="buttonDiv" class="buttonDiv">
+        </div>
     </section>
 
     <footer>
         <div class="content">
-                <h3>Web Stack Project</h3>
-                <ul class="socials">
-                    <li><a href="https://github.com/KJAstudios" target="_blank" class="fa fa-github"><span>Andrew</span></a></li>
-                    <li><a href="https://github.com/draycen" target="_blank" class="fa fa-github"><span>Draycen</span></a></li>
-                </ul>
+            <h3>Web Stack Project</h3>
+            <ul class="socials">
+                <li><a href="https://github.com/KJAstudios" target="_blank" class="fa fa-github"><span>Andrew</span></a>
+                </li>
+                <li><a href="https://github.com/draycen" target="_blank" class="fa fa-github"><span>Draycen</span></a>
+                </li>
+            </ul>
         </div>
         <div class="footer-bottom">
             <small id="copyright">Copyright &copy; 2021. Designed by KJAstudios and Draycen.</small>
@@ -41,8 +45,9 @@
     </footer>
     <script>
         var audio = document.getElementById("audioMusic");
-        function bell(){
-            audio.play();}
+        function bell() {
+            audio.play();
+        }
     </script>
 </body>
 
