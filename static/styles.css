@@ -1,23 +1,8 @@
-.gameCanvas{
-    background-color: red;
-    bottom: 5%;
-}
-
 *{
     display:block;
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    /* position: absolute; */
-    /* transform: translate(10px, 10px); */
-}
-body{
-    background-color: white;
-}
-
-#numberButton:hover{
-    transition: transform .1s;
-    transform: scale(1.175);
 }
 
 #title{
@@ -35,6 +20,14 @@ body{
     padding: 0.5%;
 }
 
+body{
+    background-color: white;
+}
+
+#numberButton:hover{
+    transition: transform .1s;
+    transform: scale(1.175);
+}
 
 /*footer*/
 footer{
@@ -99,3 +92,10 @@ footer{
     /* color: #24292F; */
     font-weight: 75031;
 }
+/* body */ 
+#currentIncome{
+    margin-left: 10%;
+}
+
+#numberButton{
+    align-items: center;
