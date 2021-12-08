@@ -52,7 +52,7 @@ footer{
 }
 
 .content{
-    background-color: #0047ab;
+    background-color: green;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,9 +62,10 @@ footer{
 
 .content h3{
     font-size: 1.8rem;
-    font-weight: 400;
+    font-weight: 750;
     text-transform: capitalize;
     line-height: 2.5rem;
+    color: black;
 }
 
 .socials{
@@ -80,7 +81,7 @@ footer{
 }
 
 .socials a:hover {
-    color: red;
+    color: white;
 }
 
 .footer-bottom {
@@ -94,6 +95,7 @@ footer{
 }
 .fa-github {
     background: green ;
-    color: white;
+    color: black;
     /* color: #24292F; */
+    font-weight: 75031;
 }
