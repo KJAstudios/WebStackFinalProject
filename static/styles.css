@@ -6,11 +6,15 @@
 *{
     display:block;
     margin: 0px;
-    background-color: white;
+    padding: 0px;
+    box-sizing: border-box;
     /* position: absolute; */
     /* transform: translate(10px, 10px); */
-    
 }
+body{
+    background-color: white;
+}
+
 #numberButton:hover{
     transition: transform .1s;
     transform: scale(1.175);
@@ -20,7 +24,7 @@
     display: grid;
     text-align: center;
     font-size: 200%;
-    color: yellow;
+    color: #50C878	;
     margin-top: 0%;
     margin-bottom: 1%;
     border-radius: 2%;
@@ -31,25 +35,65 @@
     padding: 0.5%;
 }
 
-.fa:hover {
-    #24292F
+
+/*footer*/
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #111;
+    height: auto;
+    width: auto;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding-top: 40px;
+    color: white;
+}
+
+.content{
+    background-color: #0047ab;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: -15px;
+}
+
+.content h3{
+    font-size: 1.8rem;
+    font-weight: 400;
+    text-transform: capitalize;
+    line-height: 2.5rem;
+}
+
+.socials{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 2rem 0;
+}
+
+.socials li{
+    margin: 0 10px;
+}
+
+.socials a:hover {
+    color: red;
+}
+
+.footer-bottom {
+    font-size: 14px;
+    word-spacing: 2px;
+    text-transform: capitalize;
+}
+
+.footer-bottom span{
+    display: flex;
 }
 .fa-github {
-    background: white ;
-    color: #24292F;
-}
-
-.social{
-    display: flex;
-    margin-left: 45%;
-}
-
-.social a{ 
-    display: flex;
-    width: 40px;
-    height: 40px;
-    justify-content:center;
-    align-items: center;
-    float: left;
-    list-style-type: none;
+    background: green ;
+    color: white;
+    /* color: #24292F; */
 }
