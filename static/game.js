@@ -52,7 +52,7 @@ function moneyUpdate() {
 
 function updateNumberText() {
     number = roundNumberToTwoDecimals(number);
-    $("#number").text("$" +beautifyNumber(number));
+    $("#number").text("$" + beautifyNumber(number));
 }
 
 function updateIncomeText() {
@@ -81,7 +81,7 @@ function unlockUpgradeCheck() {
 function addUpgrade() {
     $.post('/upgrade', { upgradeId: nextUpgradeId })
         .done(function (data) {
-            if(typeof data[0].name === "undefined"){
+            if (typeof data[0].name === "undefined") {
                 return;
             }
             var upgrade = new Upgrade(data[0].name, data[0].upgradeId, data[0].startingIncome, data[0].initalPrice);
@@ -126,18 +126,24 @@ class Upgrade {
         if (number - this.price < 0) {
             return;
         }
+        this.levelUpUpgrade();
+        this.checkForAdditionalIncomeUpgrade();
+    }
+
+    checkForAdditionalIncomeUpgrade() {
+        if (this.level % 10 === 0) {
+            this.additionalIncome *= 2;
+        }
+    }
+
+    
+
+    levelUpUpgrade() {     
         this.level += 1;
         number -= this.price;
         currentIncome += this.additionalIncome;
         clickValue += roundNumberToTwoDecimals(this.additionalIncome * 0.01);
         this.price = this.calcuateUpgradeCost(this.level, this.price);
-        this.checkForAdditionalIncomeUpgrade();
-    }
-
-    checkForAdditionalIncomeUpgrade(){
-        if(this.level % 10 === 0){
-            this.additionalIncome *= 2;
-        }
     }
 
     calcuateUpgradeCost(level, currentPrice) {

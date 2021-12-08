@@ -121,7 +121,9 @@ script{
 }
 
 .buttonDiv{
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    gap: 1%;
     justify-content: center;
     align-items: center;
 }
