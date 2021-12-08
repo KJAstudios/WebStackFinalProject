@@ -51,7 +51,7 @@ function moneyUpdate() {
 
 function updateNumberText() {
     number = roundNumberToTwoDecimals(number);
-    $("#number").text("$" + beautifyNumber(number));
+    $("#number").text("Current Balance: $" + beautifyNumber(number));
 }
 
 function updateIncomeText() {

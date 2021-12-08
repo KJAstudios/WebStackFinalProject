@@ -67,14 +67,22 @@ footer{
     align-items: center;
     justify-content: center;
     margin: 1rem 0 2rem 0;
+
 }
 
 .socials li{
     margin: 0 10px;
+    
 }
 
 .socials a:hover {
     color: white;
+    
+}
+
+.socials span{
+    font-weight: bold;
+    
 }
 
 .footer-bottom {
@@ -83,19 +91,31 @@ footer{
     text-transform: capitalize;
 }
 
-.footer-bottom span{
-    display: flex;
-}
 .fa-github {
     background: green ;
     color: black;
+    font-weight: bold;
     /* color: #24292F; */
-    font-weight: 75031;
 }
-/* body */ 
-#currentIncome{
-    margin-left: 10%;
+
+/* body */
+.clicking{
+    text-align: center;
 }
 
 #numberButton{
-    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    font-size: 20px;
+    position: absolute;
+    left: 40%;
+    top: 10%;
+}
+#box-container{
+    position: relative;
+    height: 50px;
+}
+
+script{
+    display: none;
+}
