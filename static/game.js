@@ -84,7 +84,7 @@ function addUpgrade() {
             var upgrade = new Upgrade(data[0].name, data[0].upgradeId, data[0].startingIncome, data[0].initalPrice);
             console.log(upgrade);
             currentUpgrades.push(upgrade);
-            $("footer").prepend(upgrade.getUpgradeHTML());
+            $("#buttonDiv").append(upgrade.getUpgradeHTML());
 
             $("#" + nextUpgradeId).click(function () {
                 upgrade.buyUpgrade();
